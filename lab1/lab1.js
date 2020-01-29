@@ -70,8 +70,7 @@ class salad {
         }
     }
     price() {
-        let array = [this.foundation, this.protein, this.extra, this.dressing];
-        return array.reduce((acc, curr) => {
+        return this.foundation.concat(this.protein, this.extra, this.dressing).reduce((acc, curr) => {
             return acc + imported.inventory[curr].price;
         }, 0); 
     }
@@ -84,13 +83,13 @@ mySalad.add("dressing", "Ceasardressing");
 mySalad.add("extra", "Avocado");
 mySalad.add("extra", "Böngroddar");
 console.log(mySalad);
+console.log(mySalad.price());
 mySalad.remove("extra", "Avocado")
 console.log(mySalad);
 console.log(mySalad.price());
 class ExtraGreenSalad extends salad {
     price () {
-        let array = [this.foundation, this.protein, this.extra, this.dressing];
-        return array.reduce((acc, curr) => {
+        return this.foundation.concat(this.protein, this.extra, this.dressing).reduce((acc, curr) => {
             if (imported.inventory[curr].foundation){
                 return acc + imported.inventory[curr].price * 1.3;
             } else {
@@ -106,6 +105,7 @@ myExtraGreenSalad.add("dressing", "Ceasardressing");
 myExtraGreenSalad.add("extra", "Avocado");
 myExtraGreenSalad.add("extra", "Böngroddar");
 console.log(myExtraGreenSalad);
+console.log(myExtraGreenSalad.price());
 myExtraGreenSalad.remove("extra", "Avocado")
 console.log(myExtraGreenSalad);
 console.log(myExtraGreenSalad.price());
@@ -140,6 +140,7 @@ myGourmetSalad.add("dressing", "Ceasardressing", 0.3);
 myGourmetSalad.add("extra", "Avocado", 2);
 myGourmetSalad.add("extra", "Böngroddar", 1.4);
 console.log(myGourmetSalad);
+console.log(myGourmetSalad.price());
 myGourmetSalad.remove("extra", "Avocado")
 console.log(myGourmetSalad);
 console.log(myGourmetSalad.price());
