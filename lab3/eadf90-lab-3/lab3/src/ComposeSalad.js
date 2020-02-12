@@ -25,7 +25,7 @@ class ComposeSalad extends Component {
         }
     };
     handleBoxChange = event => {
-        console.log(event.target.checked);
+
         const name = event.target.getAttribute("name");
         const value = event.target.value;
         let index;
@@ -49,8 +49,10 @@ class ComposeSalad extends Component {
     }
     handleSubmit = event => {
         event.preventDefault();
+        event.target.classList.add("was-validated");
 
         if (event.target.checkValidity() === true) {
+            event.target.classList.remove("was-validated");
             const salad = this.state;
             this.props.addSalad(salad);
 
@@ -60,6 +62,7 @@ class ComposeSalad extends Component {
                 extras: [],
                 dressing: ""
             });
+            this.props.history.push("/view-order");
         }
     }
 
@@ -76,7 +79,7 @@ class ComposeSalad extends Component {
         );
         return (
         <div className="container">
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} noValidate>
             <h4>Select foundations</h4>
             <SaladSelect 
                 type="foundation"
